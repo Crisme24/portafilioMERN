@@ -40,7 +40,7 @@ const AddEducation = ({ addEducation, history }) => {
             placeholder="* School or Bootcamp"
             name="school"
             value={school}
-            onChange={e => onChange(e)}
+            onChange={onChange}
             required
           />
         </div>
@@ -50,19 +50,19 @@ const AddEducation = ({ addEducation, history }) => {
             placeholder="* Degree or Certificate"
             name="degree"
             value={degree}
-            onChange={e => onChange(e)}
+            onChange={onChange}
             required
           />
         </div>
         <div className="form-group">
           <input type="text" placeholder="Field Of Study" name="fieldofstudy"
           value={fieldofstudy}
-          onChange={e => onChange(e)} />
+          onChange={onChange} />
         </div>
         <div className="form-group">
           <h4>From Date</h4>
           <input type="date" name="from" value={from}
-            onChange={e => onChange(e)}/>
+            onChange={onChange}/>
         </div>
         <div className="form-group">
           <p>
@@ -76,7 +76,7 @@ const AddEducation = ({ addEducation, history }) => {
         <div className="form-group">
           <h4>To Date</h4>
           <input type="date" name="to" value={to}
-            onChange={e => onChange(e)}/>
+            onChange={onChange}/>
         </div>
         <div className="form-group">
           <textarea
@@ -85,7 +85,7 @@ const AddEducation = ({ addEducation, history }) => {
             rows="5"
             placeholder="Program Description"
             value={description}
-            onChange={e => onChange(e)}
+            onChange={onChange}
           ></textarea>
         </div>
         <input type="submit" className="btn btn-primary my-1" />

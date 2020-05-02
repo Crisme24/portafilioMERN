@@ -39,12 +39,12 @@ const Dashboard = ({
             </div>
         </Fragment>
         ) : (
-        <Fragment>
-            <p>You has not yet setup a profile, please add some info</p>
-                Create Profile
+            <Fragment>
+            <p>You have not yet setup a profile, please add some info</p>
             <Link to="/create-profile" className="btn btn-primary my-1">
+              Create Profile
             </Link>
-        </Fragment>
+          </Fragment>
         )}
     </Fragment>
     );
