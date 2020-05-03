@@ -9,12 +9,13 @@
     "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start:front": "cd frontend && npm start",
+        "start:front": "cd frontend && npm start --prefix frontend",
         "start:back": "cd backend && nodemon server",
         "start": "concurrently \"npm run start:front\" \"npm run start:back\"",
         "postinstall": "npm run install:front && npm run install:back",
         "install:front": "cd frontend && npm install",
-        "install:back": "cd backend && npm install"
+        "install:back": "cd backend && npm install",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
     },
     "keywords": [],
     "author": "Jeimy Trivino",
