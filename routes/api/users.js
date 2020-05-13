@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
+const normalize = require('normalize-url');
 
 // @route   POST api/users
 // @desc    Register user
@@ -35,17 +36,20 @@ router.post('/', [
         }
 
         // Get users gravatar
-        const avatar = gravatar.url(email, {
-            s: '200',
-            r: 'pg',
-            d: 'mm'
-        });
+        const avatar = normalize(
+            gravatar.url(email, {
+              s: '200',
+              r: 'pg',
+              d: 'mm'
+            }),
+            { forceHttps: true }
+          );
 
         user = new User({
-            name: name,
-            email: email,
-            avatar: avatar,
-            password: password
+            name,
+            email,
+            avatar,
+            password
         });
 
         const salt = await bcrypt.genSalt(10);

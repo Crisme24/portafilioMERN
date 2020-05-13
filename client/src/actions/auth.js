@@ -10,13 +10,10 @@ import {
     LOGOUT,
     CLEAR_PROFILE
 } from './types';
-import setAuthToken from '../utils/setAuthToken';
+
 
 //load User
 export const loadUser = () => async dispatch => {
-    if (localStorage.token) {
-        setAuthToken(localStorage.token);
-    }
 
     try {
         const res = await axios.get('/api/auth');
@@ -26,13 +23,13 @@ export const loadUser = () => async dispatch => {
             payload: res.data
         });
 
-        //dispatch(loadUser());
+        dispatch(loadUser());
     } catch (err) {
         dispatch({
             type: AUTH_ERROR
         });
     }
-}
+};
 
 //Register User
 export const register = ({ name, email, password }) => async dispatch => {
@@ -69,7 +66,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 };
 
 //Login User
-export const login = (email, password) => async dispatch => {
+export const login = (email, password) => async (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -85,6 +82,7 @@ export const login = (email, password) => async dispatch => {
             type: LOGIN_SUCCESS,
             payload: res.data
         });
+       dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data.errors;
 
